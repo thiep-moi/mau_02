@@ -2090,64 +2090,59 @@
             transition: background 0.8s ease, backdrop-filter 0.8s ease;
         }
 
-        /* --- VẬT LÝ: GIỌT SƯƠNG RƠI --- */
+        /* --- VẬT LÝ ÉP XUNG GPU: GIỌT SƯƠNG RƠI --- */
         .genesis-drop {
             position: absolute;
-            top: -50px;
-            /* Bắt đầu rơi từ ngoài màn hình */
+            top: 0;
             left: 50%;
             width: 5px;
             height: 18px;
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9));
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            /* Ép hình giọt nước vật lý */
-            transform: translateX(-50%);
+            transform: translate3d(-50%, -100px, 0);
             opacity: 0;
-            will-change: transform, top, opacity;
+            will-change: transform, opacity;
             z-index: 100;
         }
 
         .genesis-drop.falling {
-            /* Gia tốc rơi tự do Cubic-bezier chân thực nhất */
             animation: dropFall 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
         }
 
         @keyframes dropFall {
             0% {
-                top: -50px;
+                transform: translate3d(-50%, -100px, 0);
                 opacity: 1;
                 height: 18px;
             }
 
             90% {
-                top: 50%;
+                transform: translate3d(-50%, 50vh, 0);
                 opacity: 1;
                 height: 18px;
             }
 
             100% {
-                top: 50%;
+                transform: translate3d(-50%, calc(50vh + 15px), 0);
                 opacity: 0;
                 height: 3px;
-                transform: translate(-50%, 15px);
             }
-
-            /* Bẹp dúm khi chạm */
         }
 
-        /* Sóng âm đóng băng mặt hồ khi giọt sương chạm đáy */
+        /* Sóng âm đóng băng mặt hồ khi giọt sương chạm đáy (ÉP XUNG GPU) */
         .genesis-shockwave {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 0px;
-            height: 0px;
+            width: 150vw;
+            height: 150vw;
             border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate3d(-50%, -50%, 0) scale(0);
             opacity: 0;
             pointer-events: none;
             z-index: 99;
+            will-change: transform, opacity;
         }
 
         .genesis-shockwave.impact {
@@ -2156,15 +2151,13 @@
 
         @keyframes shockwaveExpand {
             0% {
-                width: 0;
-                height: 0;
+                transform: translate3d(-50%, -50%, 0) scale(0);
                 opacity: 1;
                 border-width: 5px;
             }
 
             100% {
-                width: 150vw;
-                height: 150vw;
+                transform: translate3d(-50%, -50%, 0) scale(1);
                 opacity: 0;
                 border-width: 1px;
             }
