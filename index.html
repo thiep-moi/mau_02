@@ -67,7 +67,8 @@
         /* =========================================
            [LÕI ĐỘNG CƠ GPU] TỐI ƯU HÓA 60FPS TOÀN CỤC BẰNG PHẦN CỨNG
            ========================================= */
-        html, body {
+        html,
+        body {
             /* 1. KHỬ RĂNG CƯA & CHỐNG RUNG CHỮ: Ép viền chữ sắc lẹm tuyệt đối trên mọi loại màn hình (Retina/OLED) */
             -webkit-font-smoothing: antialiased !important;
             -moz-osx-font-smoothing: grayscale !important;
@@ -76,9 +77,16 @@
 
         /* 2. TÁCH LỚP GPU (LAYER ISOLATION) CHO CÁC "SÁT THỦ NGỐN RAM" (KÍNH MỜ, BÓNG ĐỔ, VÂN ĐÁ) */
         /* Cú lừa phần cứng: Ép trình duyệt đưa các hiệu ứng kính mờ (blur) vào một Layer Đồ họa riêng biệt */
-        .glass-card, .map-card, .rsvp-card, .gift-box, 
-        .person-photo-wrap, .photo-wrapper, .trio-item, 
-        .hero-image-wrapper, .cinematic-whisper, #masterpiece-intro,
+        .glass-card,
+        .map-card,
+        .rsvp-card,
+        .gift-box,
+        .person-photo-wrap,
+        .photo-wrapper,
+        .trio-item,
+        .hero-image-wrapper,
+        .cinematic-whisper,
+        #masterpiece-intro,
         .family-card-alone {
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -88,8 +96,13 @@
 
         /* 3. THIẾT QUÂN LUẬT CHO CÁC VẬT THỂ BAY LƯỢN VÀ ẢO ẢNH BÁM VIỀN */
         /* Cấm dùng CPU, tàng hình mặt lưng 3D để chống vỡ hạt (pixelate) và xé viền khi bay/nổi lên */
-        .reveal-card-3d, .animate-text-up, .phantom-flower, 
-        .gold-leaf, .genesis-drop, .crystal-bloom, .music-floating-btn {
+        .reveal-card-3d,
+        .animate-text-up,
+        .phantom-flower,
+        .gold-leaf,
+        .genesis-drop,
+        .crystal-bloom,
+        .music-floating-btn {
             -webkit-backface-visibility: hidden !important;
             backface-visibility: hidden !important;
             -webkit-perspective: 1000px;
@@ -137,71 +150,6 @@
         }
 
         /* Đã gỡ bỏ body::after để vân đá hiển thị độ trong vắt tuyệt đối */
-
-        /* ÁNH SÁNG TƯƠNG TÁC THEO CHUỘT/NGÓN TAY (AMBIENT SPOTLIGHT) */
-        #ambient-light {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            z-index: -2;
-            /* Nằm dưới kính, trên nền vân đá */
-            pointer-events: none;
-            /* Ánh sáng màu Xanh Băng (Icy Glow), tâm sáng theo tọa độ X,Y của chuột */
-            background: radial-gradient(circle 50vw at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(180, 210, 230, 0.35) 0%, transparent 60%);
-            will-change: background;
-        }
-
-        /* BỤI VÀNG LƠ LỬNG 3D (GOLD LEAF) */
-        #gold-leaf-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100dvh;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        /* BONG BÓNG XANH PHA LÊ (ICY BUBBLES / BOKEH) */
-        .gold-leaf {
-            position: absolute;
-            /* Đúc bong bóng từ gradient mờ ảo (hiệu ứng khối cầu thủy tinh trong suốt) */
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(127, 161, 195, 0.2) 60%, transparent 100%);
-            border-radius: 50%;
-            /* Tròn xoe hoàn hảo */
-            /* Tạo viền sáng quang học cho khối cầu */
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(43, 58, 74, 0.05);
-            opacity: 0;
-            will-change: transform, opacity;
-            animation: floatBubble linear infinite;
-        }
-
-        /* Chuyển động nổi lên của bong bóng (Êm êm, không xoay lộn xộn như lá) */
-        @keyframes floatBubble {
-            0% {
-                transform: translateY(110vh) translateX(0) scale(0.8);
-                /* Bắt đầu nhỏ ở đáy */
-                opacity: 0;
-            }
-
-            20% {
-                opacity: 1;
-            }
-
-            80% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-10vh) translateX(30px) scale(1.3);
-                /* Phình to dần khi nổi lên mặt nước */
-                opacity: 0;
-            }
-        }
-
 
         /* =========================================
            1. ENGINE HÀO QUANG NGỌC TRAI (GENTLE GLOW CANVAS)
@@ -2460,8 +2408,6 @@
 </head>
 
 <body class="scroll-locked">
-    <div id="ambient-light"></div>
-    <div id="gold-leaf-container"></div>
 
     <div id="crystal-bloom" class="crystal-bloom"></div>
 
@@ -2567,12 +2513,13 @@
 
                 <div class="line-mask parent-role"><span class="animate-text-up stagger-1"
                         style="display: block;">Ông</span></div>
-                <div class="line-mask parent-name"><span class="animate-text-up stagger-1" style="display: block;">Bố Chú Rể</span></div>
+                <div class="line-mask parent-name"><span class="animate-text-up stagger-1" style="display: block;">Bố
+                        Chú Rể</span></div>
 
                 <div class="line-mask parent-role"><span class="animate-text-up stagger-2"
                         style="display: block;">Bà</span></div>
-                <div class="line-mask parent-name"><span class="animate-text-up stagger-2"
-                        style="display: block;">Mẹ Chú Rể</span></div>
+                <div class="line-mask parent-name"><span class="animate-text-up stagger-2" style="display: block;">Mẹ
+                        Chú Rể</span></div>
 
                 <div class="line-mask child-role"><span class="animate-text-up stagger-3" style="display: block;">Chú
                         Rể</span></div>
@@ -2593,12 +2540,13 @@
 
                 <div class="line-mask parent-role"><span class="animate-text-up stagger-1"
                         style="display: block;">Ông</span></div>
-                <div class="line-mask parent-name"><span class="animate-text-up stagger-1"
-                        style="display: block;">Bố Cô Dâu</span></div>
+                <div class="line-mask parent-name"><span class="animate-text-up stagger-1" style="display: block;">Bố Cô
+                        Dâu</span></div>
 
                 <div class="line-mask parent-role"><span class="animate-text-up stagger-2"
                         style="display: block;">Bà</span></div>
-                <div class="line-mask parent-name"><span class="animate-text-up stagger-2" style="display: block;">Mẹ Cô Dâu</span></div>
+                <div class="line-mask parent-name"><span class="animate-text-up stagger-2" style="display: block;">Mẹ Cô
+                        Dâu</span></div>
 
                 <div class="line-mask child-role"><span class="animate-text-up stagger-3" style="display: block;">Cô
                         Dâu</span></div>
@@ -3169,60 +3117,6 @@
                     });
             });
         });
-
-        // =========================================================
-        // HỆ THẦN KINH 1: ENGINE ÁNH SÁNG VÀ BỤI VÀNG (LUXURY AMBIENT)
-        // =========================================================
-
-        // 1. Theo dõi ngón tay / con trỏ chuột để rọi đèn
-        const ambientLight = document.getElementById('ambient-light');
-
-        document.addEventListener('mousemove', (e) => {
-            ambientLight.style.setProperty('--mouse-x', `${e.clientX}px`);
-            ambientLight.style.setProperty('--mouse-y', `${e.clientY}px`);
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            ambientLight.style.setProperty('--mouse-x', `${e.touches[0].clientX}px`);
-            ambientLight.style.setProperty('--mouse-y', `${e.touches[0].clientY}px`);
-        }, { passive: true });
-
-        // 2. Thuật toán nhào nặn 35 vảy vàng lơ lửng trong không gian 3D
-        const leafContainer = document.getElementById('gold-leaf-container');
-        const leafCount = 35;
-
-        for (let i = 0; i < leafCount; i++) {
-            let leaf = document.createElement('div');
-            leaf.className = 'gold-leaf';
-
-            // Kích thước ngẫu nhiên từ 3px đến 8px
-            let size = Math.random() * 5 + 3;
-            leaf.style.width = `${size}px`;
-            leaf.style.height = `${size + (Math.random() * 4)}px`; // Cố tình làm méo để giống lá vàng
-
-            // Vị trí xuất phát rải rác khắp màn hình
-            leaf.style.left = `${Math.random() * 100}vw`;
-
-            // Tốc độ bay cực chậm và chênh lệch nhau để tự nhiên (15s - 35s)
-            leaf.style.animationDuration = `${Math.random() * 20 + 15}s`;
-
-            // Đảo lộn thời gian bắt đầu (Delay âm) để bụi bay đầy màn hình ngay lập tức
-            leaf.style.animationDelay = `-${Math.random() * 30}s`;
-
-            // HIỆU ỨNG CHIỀU SÂU (DEPTH OF FIELD) CỰC KỲ QUAN TRỌNG
-            if (Math.random() > 0.6) {
-                // Hạt ở xa: Mờ, nhòe và nhỏ hơn
-                leaf.style.filter = `blur(${Math.random() * 3 + 1}px)`;
-                leaf.style.opacity = Math.random() * 0.4 + 0.1;
-                leaf.style.zIndex = "-2";
-            } else {
-                // Hạt ở gần: Sắc nét, sáng rực
-                leaf.style.filter = 'blur(0px)';
-                leaf.style.opacity = Math.random() * 0.7 + 0.3;
-            }
-
-            leafContainer.appendChild(leaf);
-        }
 
         // 2. ĐẠO DIỄN CHUỖI ĐIỀU PHỐI THỜI GIAN INTRO & CONTENT
         document.addEventListener('DOMContentLoaded', () => {
